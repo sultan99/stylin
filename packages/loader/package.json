@@ -1,0 +1,28 @@
+{
+  "name": "@stylin/loader",
+  "version": "0.0.1",
+  "description": "Stylin loader module for webpack",
+  "license": "MIT",
+  "author": "sultan99",
+  "main": "dist/index",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run clean && npm run compile",
+    "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
+    "compile": "tsc -b",
+    "lint": "eslint . --ext .tsx,.ts --fix",
+    "prepublishOnly": "npm run build",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.15.0",
+    "eslint": "^7.19.0",
+    "eslint-plugin-react": "^7.22.0",
+    "typescript": "^4.1.3"
+  }
+}
