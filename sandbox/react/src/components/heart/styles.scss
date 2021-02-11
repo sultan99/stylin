@@ -1,0 +1,19 @@
+/*
+  @isRed: true ? red : gray
+  @size: --size 24px
+  @src: --src unset
+*/
+.icon {
+  --size: 24px;
+  height: var(--size);
+  width: var(--size);
+  mask-image: var(--src);
+  -webkit-mask-image: var(--src);
+
+  &.red {
+    background-color: #ff056d;    
+  }
+  &.gray {
+    background-color: #e0e0e0;
+  }
+}

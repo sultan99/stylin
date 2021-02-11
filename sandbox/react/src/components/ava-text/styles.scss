@@ -1,0 +1,22 @@
+.ava-box {
+  display: flex;
+
+  > div + div {
+    margin-left: 10px;
+  }
+}
+
+.text-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 16px;
+  margin: 0;
+}
+
+.description {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 14px;
+}

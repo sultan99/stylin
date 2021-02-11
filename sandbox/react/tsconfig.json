@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "jsx": "react",
+    "module": "ES6",
+    "moduleResolution": "Node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "target": "ES6",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@stylin/loader": [
+        "../../packages/loader/dist"
+      ],
+      "@stylin/style": [
+        "../../packages/style/dist"
+      ],
+    },
+    "typeRoots": [
+      "src/types",
+      "node_modules/@types"
+    ]
+  },
+  "include": [
+    "src",
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}
