@@ -45,9 +45,10 @@ export interface PostType {
   author: AuthorType
 }
 
+const offset = random(1, 100)
 const pickData = ({results}): PostType[] => results.map((item, index) => ({
   id: item.login.uuid,
-  photoUrl: `https://picsum.photos/400?seed=${item.login.uuid}`,
+  photoUrl: `https://picsum.photos/id/${index + offset}/400`,
   author: {
     name: toCapitalize(`${item.name.first} ${item.name.last}`),
     imageUrl: genUserAva(item.name.first),

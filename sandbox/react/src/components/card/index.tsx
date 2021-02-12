@@ -18,9 +18,15 @@ interface CardProps {
   onClick: () => void
 }
 
+const handleError = ({target}) => {
+  const newId = Math.floor(Math.random() * 1000)
+  const url = target.src.replace(/\d+/, newId)
+  target.src = url
+}
+
 const Card: FC<CardProps> = ({author, hoverEnabled, imageUrl, liked, onClick}) => (
   <CardBox hoverEnabled={hoverEnabled} onClick={onClick}>
-    <Picture src={imageUrl}/>
+    <Picture src={imageUrl} onError={handleError}/>
     <Footer>
       <Author {...author} />
       <Heart isRed={liked}/>
