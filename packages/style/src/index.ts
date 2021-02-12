@@ -1,17 +1,16 @@
 import React from 'react'
 
 const createComponent = css => element => defaultClass => props => {
-  const scope = css[defaultClass] || ``
-
-  if (!css[`@react-msa`] || !css[`@react-msa`][defaultClass]) {
+  const className = css[defaultClass] || ``
+  const msaTree = css[`@react-msa`] && css[`@react-msa`][defaultClass]
+  if (!msaTree) {
     return React.createElement(element, {
-      className: scope, ...props
+      className, ...props
     })
   }
 
-  const skippedProps = {}
-  const {properties, variables} = css[`@react-msa`][defaultClass]
-  const {className, style} = Object
+  const {properties, variables} = msaTree
+  const finalProps = Object
     .entries(props)
     .reduce((acc, [name, value]: [string, string]) => {
       if (properties[name] && value !== undefined) {
@@ -28,14 +27,12 @@ const createComponent = css => element => defaultClass => props => {
         defaultValue !== value && (acc.style[variable] = value)
         return acc
       }
-      skippedProps[name] = value
+      acc[name] = value
 
       return acc
-    }, {className: scope, style: {}})
+    }, {className, style: {}})
 
-  return React.createElement(element, {
-    className, style, ...skippedProps,
-  })
+  return React.createElement(element, finalProps)
 }
 
 const styleComponent = css => (element, className) => {
