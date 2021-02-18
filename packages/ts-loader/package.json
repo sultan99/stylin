@@ -1,16 +1,17 @@
 {
-  "name": "@stylin/style",
+  "name": "@stylin/ts-loader",
   "version": "0.0.1",
-  "description": "Built-time CSS library for styling React components",
+  "description": "Stylin TypeScript typing loader module for webpack",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/sultan99/stylin",
-    "directory": "packages/style"
+    "directory": "packages/ts-loader"
   },
   "author": "sultan99",
   "main": "dist/index",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
@@ -23,17 +24,16 @@
     "watch": "tsc -w"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.13",
+    "@types/ramda": "^0.27.38",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
-    "core-js": "^3.8.3",
     "eslint": "^7.19.0",
     "eslint-plugin-react": "^7.22.0",
-    "react": "^17.0.1",
+    "loader-utils": "^2.0.0",
     "typescript": "^4.1.3"
   },
-  "peerDependencies": {
-    "react": "^17.0.1"
+  "dependencies": {
+    "ramda": "^0.27.1"
   },
   "publishConfig": {
     "access": "public"

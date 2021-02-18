@@ -1,3 +1,7 @@
+/**
+  @tag: div
+  @component: AvaBox
+*/
 .ava-box {
   display: flex;
 
@@ -6,16 +10,28 @@
   }
 }
 
+/**
+  @tag: div
+  @component: TextBox
+*/
 .text-box {
   display: flex;
   flex-direction: column;
 }
 
+/**
+  @tag: h1
+  @component: Title
+*/
 .title {
   font-size: 16px;
   margin: 0;
 }
 
+/**
+  @tag: span
+  @component: Description
+*/
 .description {
   color: rgba(0, 0, 0, 0.54);
   font-size: 14px;

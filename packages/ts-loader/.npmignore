@@ -1,0 +1,16 @@
+.log
+.editorconfig
+.env
+.env.test
+.eslintrc
+.gitattributes
+.gitignore
+.idea/ 
+.log
+.vscode/
+logs
+node_modules
+npm-debug.log*
+src
+yarn-debug.log*
+yarn-error.log*

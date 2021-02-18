@@ -1,21 +1,13 @@
 import React, {FC} from 'react'
 import Author from '@/components/ava-text'
 import Heart from '@/components/heart'
-import applyCss from '@stylin/style'
-import styles from './styles.scss'
-import {AuthorType} from '@/app/fetch-data'
-
-const styled = applyCss(styles)
-const Picture = styled.img(`picture`)
-const Footer = styled.div(`footer`)
-const CardBox = styled.div(`card-box`)
+import {CardBox, Picture, Footer} from './styles.scss'
+import {Post} from '@/app/fetch-data'
 
 interface CardProps {
-  author: AuthorType
-  hoverEnabled: boolean
-  imageUrl: string
-  liked: boolean
-  onClick: () => void
+  hoverEnabled?: boolean
+  post: Post
+  onClick: (event: React.MouseEvent<HTMLElement>) => void
 }
 
 const handleError = ({target}) => {
@@ -24,14 +16,16 @@ const handleError = ({target}) => {
   target.src = url
 }
 
-const Card: FC<CardProps> = ({author, hoverEnabled, imageUrl, liked, onClick}) => (
-  <CardBox hoverEnabled={hoverEnabled} onClick={onClick}>
-    <Picture src={imageUrl} onError={handleError}/>
+const Card: FC<CardProps> = ({hoverEnabled, post, onClick}) => (
+  <CardBox id={post.id} hoverEnabled={hoverEnabled} onClick={onClick}>
+    <Picture src={post.photoUrl} onError={handleError}/>
     <Footer>
-      <Author {...author} />
-      <Heart isRed={liked}/>
+      <Author {...post.author} />
+      <Heart isRed={post.liked}/>
     </Footer>
   </CardBox>
 )
 
-export default Card
+export default React.memo(Card,
+  (prev, next) => prev.post.liked === next.post.liked
+)

@@ -1,9 +1,4 @@
 **/dist
-**/dist
 **/node_modules
 .idea
 .vscode
-dist
-lerna-debug.log
-npm-debug.log
-tsconfig.tsbuildinfo

@@ -1,7 +1,9 @@
 /*
-  @isRed: true ? red : gray
-  @size: --size 24px
-  @src: --src unset
+  @tag: div
+  @component: Icon
+  isRed: true ? red : gray
+  size?: 24px --size 
+  src: unset --src
 */
 .icon {
   --size: 24px;

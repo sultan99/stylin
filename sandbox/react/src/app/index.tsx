@@ -1,36 +1,43 @@
-import React, {useEffect, useState} from 'react'
+import React, {useReducer, useEffect, useCallback} from 'react'
 import Card from '@/components/card'
-import applyCss from '@stylin/style'
-import fetchData, {PostType} from './fetch-data'
-import styles from './styles.scss'
+import fetchData, {Post} from './fetch-data'
+import {List} from './styles.scss'
 
-const MAX_RECORDS = 80
-const styled = applyCss(styles)
-const List = styled.section(`grid`)
+const MAX_RECORDS = 10
+
+function reducer(state: Post[], action): Post[] {
+  if (action.type === `update`) {
+    return action.posts
+  }
+  if (action.type === `like`) {
+    const newState = state.map(
+      post => post.id === action.postId
+        ? {...post, liked: !post.liked}
+        : post
+    )
+    return newState
+  }
+}
 
 const App = () => {
-  const [data, setData] = useState<PostType[]>([])
-  const [selected, setSelected] = useState<string[]>([])
+  const [data, dispatch] = useReducer(reducer, [])
+  const handleClick = useCallback(({currentTarget}) => {
+    const postId = currentTarget.id
+    dispatch({type: `like`, postId})
+  }, [])
 
-  const handleClick = (postId: string) => () => {
-    const newList = selected.includes(postId)
-      ? selected.filter(id => id !== postId)
-      : [...selected, postId]
-    setSelected(newList)
-  }
-
-  useEffect(fetchData(MAX_RECORDS, setData), [])
+  useEffect(() => {
+    const setData = (posts: Post[]) => dispatch({type: `update`, posts})
+    fetchData(MAX_RECORDS, setData)
+  }, [])
 
   return (
     <List>
-      {data.map(({id, author, photoUrl}) =>
+      {data.map(post =>
         <Card
-          key={id}
-          author={author}
-          hoverEnabled={true}
-          imageUrl={photoUrl}
-          liked={selected.some(selectedId => selectedId === id)}
-          onClick={handleClick(id)}
+          key={post.id}
+          post={post}
+          onClick={handleClick}
         />
       )}
     </List>

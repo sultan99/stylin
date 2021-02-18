@@ -1,6 +1,6 @@
 ## Webpack loader
 
-In webpack config, place `@stylin/loader` in modules/rules.
+In webpack config, place `@stylin/msa-loader` after `style-loader` in modules/rules.
 
 Set `modules` to true in options of css-loader: 
 
@@ -18,8 +18,8 @@ module.exports = {
     rules: [{
       test: /\.scss$/i,
       use: [
+        `@stylin/msa-loader`,
         `style-loader`,
-        `@stylin/loader`,
         {loader: `css-loader`, options: {modules: true}},
         `sass-loader`, // optional
       ],

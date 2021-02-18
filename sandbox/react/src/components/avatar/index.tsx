@@ -1,21 +1,15 @@
 import React, {FC} from 'react'
-import applyCss from '@stylin/style'
-import styles from './styles.scss'
+import {AvatarBox, Crop, Dot, Image} from './styles.scss'
+import {PostAuthor} from '@/app/fetch-data'
 import url from '@/url'
 
-const styled = applyCss(styles)
-const AvatarBox = styled.div(`avatar-box`)
-const Crop = styled.div(`crop`)
-const Dot = styled.div(`dot`)
-const Image = styled.div(`image`)
-
-interface AvatarProps {
+export interface AvatarProps {
   size?: string
   src: string
-  status: string
+  status: PostAuthor[`status`]
 }
 
-const Avatar: FC<AvatarProps> = ({src, status, size = `35px`}) => (
+const Avatar: FC<AvatarProps> = ({src, status, size}) => (
   <AvatarBox size={size}>
     <Crop>
       <Image src={url(src)}/>

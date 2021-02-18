@@ -1,19 +1,18 @@
-import React from 'react'
+import React, {FC} from 'react'
+import {MSA} from '@stylin/msa-loader/index'
 
-const createComponent = css => element => defaultClass => props => {
-  const className = css[defaultClass] || ``
-  const msaTree = css[`@react-msa`] && css[`@react-msa`][defaultClass]
-  if (!msaTree) {
-    return React.createElement(element, {
-      className, ...props
-    })
-  }
+interface CreateComponent {
+  <T>(css: Record<string, string>): (msa: MSA) => (props: T) => FC<T>
+}
 
-  const {properties, variables} = msaTree
+export const createComponent: CreateComponent = css => msa => props => {
+  const className = css[msa.className] || ``
+  const {tagName, properties, variables} = msa
   const finalProps = Object
     .entries(props)
     .reduce((acc, [name, value]: [string, string]) => {
-      if (properties[name] && value !== undefined) {
+      if (properties[name]) {
+        if (value === undefined) return acc
         const cssName = properties[name][value] || properties[name][`@default`]
         const hashName = css[cssName]
         if (hashName) {
@@ -21,33 +20,16 @@ const createComponent = css => element => defaultClass => props => {
         }
         return acc
       }
-
       if (variables[name]) {
-        const [variable, defaultValue] = variables[name]
-        defaultValue !== value && (acc.style[variable] = value)
+        const [defaultValue, variable] = variables[name]
+        if (defaultValue !== value) {
+          acc.style[variable] = value
+        }
         return acc
       }
       acc[name] = value
-
       return acc
     }, {className, style: {}})
 
-  return React.createElement(element, finalProps)
+  return React.createElement(tagName, finalProps)
 }
-
-const styleComponent = css => (element, className) => {
-  const create = createComponent(css)
-  if (css[element] && !className) {
-    return create(`div`)(element)
-  }
-
-  return className ? create(element)(className) : create(element)
-}
-
-const handler = {
-  get: (target, prop) => target(prop)
-}
-
-const applyCss = css => new Proxy(styleComponent(css), handler)
-
-export default applyCss

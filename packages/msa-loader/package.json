@@ -1,8 +1,13 @@
 {
-  "name": "@stylin/loader",
+  "name": "@stylin/msa-loader",
   "version": "0.0.1",
   "description": "Stylin loader module for webpack",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sultan99/stylin",
+    "directory": "packages/msa-loader"
+  },
   "author": "sultan99",
   "main": "dist/index",
   "types": "dist/index.d.ts",
@@ -12,17 +17,24 @@
   ],
   "scripts": {
     "build": "npm run clean && npm run compile",
-    "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
-    "compile": "tsc -b",
+    "clean": "rm -rf ./dist",
+    "compile": "tsc",
     "lint": "eslint . --ext .tsx,.ts --fix",
     "prepublishOnly": "npm run build",
     "watch": "tsc -w"
   },
   "devDependencies": {
+    "@types/ramda": "^0.27.38",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
     "eslint": "^7.19.0",
     "eslint-plugin-react": "^7.22.0",
     "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "ramda": "^0.27.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

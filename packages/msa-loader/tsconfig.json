@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "module": "ES6",
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "outDir": "./dist",
     "rootDir": "./src",
     "sourceMap": true,
-    "target": "ES6"
+    "target": "ES6",
   },
   "include": [
     "src/**/*"

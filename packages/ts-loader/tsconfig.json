@@ -2,8 +2,7 @@
   "compilerOptions": {
     "baseUrl": "../",
     "declaration": true,
-    "esModuleInterop": true,
-    "module": "ES6",
+    "module": "CommonJS",
     "moduleResolution": "Node",
     "outDir": "./dist",
     "rootDir": "./src",
@@ -19,7 +18,7 @@
     "src/**/*"
   ],
   "exclude": [
-    "node_modules",
-    "dist"
+    "dist",
+    "node_modules"
   ]
 }

@@ -1,5 +1,7 @@
-/*
-  @hoverEnabled: true
+/**
+  @tag: div
+  @component: CardBox
+  hoverEnabled?: true
 */
 .card-box {
   background-color: #fff;
@@ -18,12 +20,20 @@
   }
 }
 
+/**
+  @tag: img
+  @component: Picture
+*/
 .picture {
   background-color: #e0e0e0;
   height: 340px;
   object-fit: cover;
 }
 
+/**
+  @tag: div
+  @component: Footer
+*/
 .footer {
   align-items: center;
   display: flex;

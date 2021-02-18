@@ -8,7 +8,7 @@ module.exports = {
   entry: `./src/index.tsx`,
   output: {
     path: rootPath(`./dist`),
-    filename: `[hash].js`
+    filename: `[name].[contenthash].js`
   },
   module: {
     rules: [
@@ -22,14 +22,15 @@ module.exports = {
         exclude: /node_modules/,
         use: [{
           loader: `file-loader`,
-          options: {name: `[hash].[ext]`}
+          options: {name: `[name].[contenthash].[ext]`}
         }],
       },
       {
         test: /\.scss$/i,
         use: [
+          {loader: rootPath(`../../packages/ts-loader/dist`)},
+          {loader: rootPath(`../../packages/msa-loader/dist`)},
           `style-loader`,
-          {loader: rootPath(`../../packages/loader/dist`)},
           {loader: `css-loader`, options: {modules: true}},
           `sass-loader`,
         ],
@@ -46,7 +47,7 @@ module.exports = {
     extensions: [`.ts`, `.tsx`, `.scss`, `.js`, `.jsx`],
     alias: {
       '@': rootPath(`./src`),
-      '@stylin': rootPath(`../../packages`),
+      '@stylin/style': rootPath(`../../packages/style/dist`),
     }
   },
   devServer: {

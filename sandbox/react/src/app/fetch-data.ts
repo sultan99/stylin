@@ -1,3 +1,16 @@
+export interface PostAuthor {
+  name: string
+  imageUrl: string
+  status: `online` | `busy` | `offline`
+  lastVisit: string
+}
+export interface Post {
+  id: string
+  author: PostAuthor
+  liked: boolean
+  photoUrl: string
+}
+
 function random(min: number, max: number): number {
   min = Math.ceil(min)
   max = Math.floor(max)
@@ -33,22 +46,12 @@ function genStatus() {
   const status = chance < 3 ? `online` : chance < 5 ? `busy` : `offline`
   return {status, lastVisit: statusText[status] || genLastVisit()}
 }
-export interface AuthorType {
-  name: string
-  imageUrl: string
-  status: string
-  lastVisit: string
-}
-export interface PostType {
-  id: string
-  photoUrl: string
-  author: AuthorType
-}
 
-const offset = random(1, 100)
-const pickData = ({results}): PostType[] => results.map((item, index) => ({
+const offset = random(1, 50)
+const pickData = ({results}): Post[] => results.map((item, index) => ({
   id: item.login.uuid,
   photoUrl: `https://picsum.photos/id/${index + offset}/400`,
+  liked: random(1, 10) <= 2,
   author: {
     name: toCapitalize(`${item.name.first} ${item.name.last}`),
     imageUrl: genUserAva(item.name.first),
@@ -56,7 +59,7 @@ const pickData = ({results}): PostType[] => results.map((item, index) => ({
   }
 }))
 
-const fetchData = (limit: number, setData: (data: PostType[]) => void) => () => {
+const fetchData = (limit: number, setData: (data: Post[]) => void) => {
   fetch(`https://randomuser.me/api/?nat=us,dk,fr,gb&results=${limit}`)
     .then(response => response.json())
     .then(pickData)

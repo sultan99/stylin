@@ -5,8 +5,10 @@
   "keywords": [
     "react",
     "css",
+    "css-to-react",
     "msa",
-    "styling"
+    "styling",
+    "auto-typing"
   ],
   "license": "MIT",
   "author": "sultan99",
@@ -15,7 +17,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build",
+    "build": "lerna run build --parallel --stream",
     "clean": "lerna run clean",
     "release": "lerna publish",
     "start": "cd sandbox/react && npm start",
@@ -24,6 +26,7 @@
   },
   "devDependencies": {
     "@types/node": "^14.14.25",
+    "@typescript-eslint/parser": "^4.15.0",
     "lerna": "^3.22.1",
     "typescript": "^4.1.3"
   }

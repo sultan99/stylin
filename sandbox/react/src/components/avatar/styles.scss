@@ -1,5 +1,7 @@
-/*
-  @size: --width 35px
+/**
+  @tag: div
+  @component: AvatarBox
+  size?: 35px --width
 */
 .avatar-box {
   --width: 35px;
@@ -8,8 +10,10 @@
   position: relative;
 }
 
-/*
-  @src: --src unset
+/**
+  @tag: div
+  @component: Image
+  src: unset --src
 */
 .image {
   background-image: var(--src);
@@ -19,14 +23,15 @@
   width: 80%;
 }
 
-/*
-  @status: online | busy | offline
+/**
+  @tag: div 
+  @component: Dot
+  status: online | busy | offline
 */
 .dot {
   border-radius: 50%;
   border: 1.5px solid white ;
   bottom: -1.5px;
-  display: none;
   height: 25%;
   position: absolute;
   right: -1.5px;
@@ -45,6 +50,10 @@
   }
 }
 
+/**
+  @tag: div
+  @component: Crop
+*/
 .crop {
   align-items: center;
   background-color: #e9e9e9;

@@ -2,6 +2,8 @@
   "name": "@stylin/react-example",
   "version": "0.0.1",
   "description": "Stylin usage example",
+  "author": "sultan99",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "build": "npm run clean && webpack --mode production --progress",
@@ -10,10 +12,7 @@
     "start": "webpack serve --mode development --env development",
     "tsc": "tsc -w"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "npm-check-updates": "^11.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
@@ -28,7 +27,7 @@
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
-    "@typescript-eslint/parser": "^4.14.2",
+    "@typescript-eslint/parser": "^4.15.0",
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^7.0.0",
     "core-js": "^3.8.3",
