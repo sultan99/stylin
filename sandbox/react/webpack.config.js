@@ -1,5 +1,6 @@
-const CopyPlugin = require(`copy-webpack-plugin`)
+const MiniCssExtractPlugin = require(`mini-css-extract-plugin`)
 const HtmlWebPackPlugin = require(`html-webpack-plugin`)
+const CopyPlugin = require(`copy-webpack-plugin`)
 const path = require(`path`)
 
 const rootPath = dir => path.resolve(__dirname, dir)
@@ -30,7 +31,11 @@ module.exports = {
         use: [
           {loader: rootPath(`../../packages/ts-loader/dist`)},
           {loader: rootPath(`../../packages/msa-loader/dist`)},
-          `style-loader`,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {publicPath: rootPath(`public/css`)}
+          },
+          // `style-loader`,
           {loader: `css-loader`, options: {modules: true}},
           `sass-loader`,
         ],
@@ -54,6 +59,7 @@ module.exports = {
     contentBase: rootPath(`./dist`),
   },
   plugins: [
+    new MiniCssExtractPlugin(),
     new HtmlWebPackPlugin({
       template: rootPath(`./src/index.html`)
     }),

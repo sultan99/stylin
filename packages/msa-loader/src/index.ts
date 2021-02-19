@@ -58,16 +58,35 @@ const defineComponents = R.compose(
   ),
 )
 
+const parseStyleLoaderContent = (text: string): string => `
+  ${text}
+  const styled = createComponent(content.locals);
+`
+
+function parseMiniCssContent(text: string): string {
+  const [, cssList] = text.match(/export default (.+);/)
+  return `
+    const cssList = ${cssList};
+    const styled = createComponent(cssList);
+    export default cssList;
+  `
+}
+
+const parseContent = R.ifElse(
+  R.includes(`import content`),
+  parseStyleLoaderContent,
+  parseMiniCssContent,
+)
+
 function loader(content: string, sourceMap, meta: SharedData = {}) {
   meta.msa = this.data.msa
   this.addDependency(this.resource)
   const onComplete = this.async()
   const exports = defineComponents(this.data.msa)
-  const result = `\
+  const result = `
     import {createComponent} from "@stylin/style";
-    ${content}
-    const styled = createComponent(content.locals);
-    ${exports}
+    ${parseContent(content)}
+    ${exports};
   `
   onComplete(null, result, sourceMap, meta)
 }
