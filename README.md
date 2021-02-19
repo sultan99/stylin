@@ -7,7 +7,7 @@
 <br/>
 
 # Stylin
-Stylin is a built-time CSS library that offers an elegant way to style React components. It extends CSS Modules and adds some missing features like dynamic variables or auto-typing.
+Stylin is a build-time CSS library that offers an elegant way to style React components. It extends CSS Modules and adds some missing features like dynamic variables or auto-typing.
 
 There is no faster way to create styled & typed React component.
 
@@ -61,6 +61,12 @@ With the annotations you can:
  - generate documents or even stories for StoryBook
 
 For all these, you will need a specific package, plugin, or webpack loader.
+<br/>
+
+## Demo
+✨<br/>
+✨ [Github repo](https://github.com/sultan99/cards)<br/>
+✨<br/>
 <br/>
 
 ## Get started
@@ -144,9 +150,6 @@ Sweet! what is next? Read more about:
  - [Shortening and variables](./packages/style/README.md)
  - [TypeScript](./packages/ts-loader/README.md)
 <br/>
-<br/>
-<br/>
-<br/>
 
 ## Next development plans
 1) Support forwardRef
@@ -160,9 +163,6 @@ const StyledButton = applyStyle(Button)
 ```
 
 3) Support library configurations to handle React-like libraries (preact etc.).
-<br/>
-<br/>
-<br/>
 <br/>
 
 ### Glossary

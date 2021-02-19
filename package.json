@@ -20,7 +20,6 @@
     "build": "lerna run build --parallel --stream",
     "clean": "lerna run clean",
     "release": "lerna publish",
-    "start": "cd sandbox/react && npm start",
     "test": "lerna run test",
     "watch": "lerna run watch --parallel --stream"
   },
