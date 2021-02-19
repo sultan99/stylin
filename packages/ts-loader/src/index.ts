@@ -16,7 +16,7 @@ const filename = (path: string): string => {
 }
 
 const createInterface = ({compName, tagName, type, typedProperty, typedVariable}) => `
-  export interface ${type} extends ComponentProps<"${tagName}"> {
+  export interface ${type} extends ComponentProps<'${tagName}'> {
     ${typedProperty}
     ${typedVariable}
   }
@@ -32,10 +32,10 @@ function loader(content: string, sourceMap: string, meta: SharedData) {
     const typedVariable = typeVariable(variables)
     return (typedProperty || typedVariable)
       ? createInterface({compName, tagName, type, typedProperty, typedVariable})
-      : `export const ${compName}: FC<ComponentProps<"${tagName}">>`
+      : `export const ${compName}: FC<ComponentProps<'${tagName}'>>`
   })
   const result = `
-    import {FC, ComponentProps} from "react"
+    import {FC, ComponentProps} from 'react'
     ${exports.join(`\n`)}`
     .replace(/^\s+/gm, ``)
     .replace(/^\w+/gm, group =>
