@@ -73,9 +73,10 @@ For all these, you will need a specific package, plugin, or webpack loader.
 The core library:
 ```sh
 npm install @stylin/style
+npm install --save-dev @stylin/msa-loader
 ```
 
-Check webpack configurations for:
+Then you should add the loader in your webpack configs files:
  - [MSA loader](./packages/msa-loader/README.md)
  - [TypeScript loader (optional)](./packages/ts-loader/README.md)
 <br/>

@@ -61,4 +61,8 @@ For optional component properties, add a question mark as you do in typescript:
 */
 ```
 <br/>
+
+## ⚠ Webpack watcher
+Webpack in watch mode keeps tracking file changes only if it is in the dependency graph. It means if you create a file that is not imported in your application code source, webpack will not track it and will not generate types for it. Before starting coding a new component, first of all, import it into your code and then begin implementation.
+<br/>
 <br/>
