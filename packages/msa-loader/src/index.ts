@@ -95,7 +95,7 @@ const parseCommentOnly = R.pipe(
   R.replace(/@\w+[:\s]+(\w+)/g, ``),
   R.when(
     R.includes(`{`),
-    R.replace(/\{\s*(\n|\r|.)+?\}/gm, R.replace(/\n|\r/g, ``))
+    R.replace(/\n|\r/g, ` `)
   ),
   parseComment,
 )
