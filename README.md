@@ -64,9 +64,8 @@ For all these, you will need a specific package, plugin, or webpack loader.
 <br/>
 
 ## Demo
-✨<br/>
-✨ [Github repo](https://github.com/sultan99/cards)<br/>
-✨<br/>
+✨ [Online demo](https://codesandbox.io/s/condescending-grass-kth4m)<br/>
+✨ [Github repo](https://github.com/sultan99/cards)
 <br/>
 
 ## Get started
@@ -152,13 +151,13 @@ Sweet! what is next? Read more about:
  - [TypeScript](./packages/ts-loader/README.md)
 <br/>
 
-## Next development plans
+## Development plans
 1) Support forwardRef
 2) Restyling existing components:
 
 ```jsx
 import {Button} from 'antd'
-import {applyStyle} from './styles.scss'
+import applyStyle from './styles.scss'
 
 const StyledButton = applyStyle(Button)
 ```
