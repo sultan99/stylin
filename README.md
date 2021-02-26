@@ -64,7 +64,7 @@ For all these, you will need a specific package, plugin, or webpack loader.
 <br/>
 
 ## Demo
-✨ [Online demo](https://codesandbox.io/s/condescending-grass-kth4m)<br/>
+✨ [Online demo](https://codesandbox.io/s/github/sultan99/cards/tree/main)<br/>
 ✨ [Github repo](https://github.com/sultan99/cards)
 <br/>
 
@@ -128,7 +128,7 @@ Now you are the PRO 😎. Update your resume with a new skill!
 <br/>
 
 ## Shortening
-Here are [some tips](./packages/msa-loader/README.md) to make life easier. 
+Here are [some tips](./packages/style/README.md) to make life easier. 
 
 If your component property values are similar to CSS class names, like in the example below:
 
@@ -152,8 +152,7 @@ Sweet! what is next? Read more about:
 <br/>
 
 ## Development plans
-1) Support forwardRef
-2) Support library configurations to handle React-like libraries (preact etc.).
+1) Support library configurations to handle React-like libraries (preact etc.).
 <br/>
 
 ### Glossary
