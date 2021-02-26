@@ -18,6 +18,17 @@ Handlebars.registerHelper(`json`, JSON.stringify)
 const template = readFileSync(join(__dirname, `template.hbs`), `utf8`)
 const toDTS = Handlebars.compile(template, {noEscape: true})
 
+const toCamelCase = R.pipe(
+  R.toLower,
+  R.replace(/(^\w|[-_][a-z])/g,
+    R.pipe(
+      R.toUpper,
+      R.replace(`-`, ``),
+      R.replace(`_`, ``),
+    )
+  )
+)
+
 const pickRawValues = R.applySpec<ParserParams>({
   defValue: R.nth(1),
   isOptional: R.pipe(R.nth(2), R.equals(`?`)),
@@ -80,7 +91,7 @@ function parseComments(text: string): MSA[] {
     const [, comment, , className] = matches
     const pack = R.append({
       className,
-      componentName: extract(`component`, comment),
+      componentName: extract(`component`, comment) || toCamelCase(className),
       tagName: extract(`tag`, comment),
       ...parseCommentOnly(comment),
     })

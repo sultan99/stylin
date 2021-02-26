@@ -1,6 +1,6 @@
 # @stylin/style
 
-Core library. It is very tiny ([35 lines of code](./src/index.ts)) and well optimized for performance.
+The Core library. It is very tiny ([43 lines of code](./src/index.ts)) and well optimized for performance.
 <br/>
 
 ## Installation

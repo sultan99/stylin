@@ -1,25 +1,11 @@
-import React, {ComponentClass, FunctionComponent, ReactNode} from 'react'
+import React, {Ref} from 'react'
 import {MSA} from '@stylin/msa-loader/index'
+import {CreateComponent, ApplyStyle} from './types'
 
-type CSS = Record<string, string>
-type ReactComponent<P> = FunctionComponent<P> | ComponentClass<P>
-type ReactProps = {
-  className?: string
-  children?: ReactNode[]
-}
+export const url = (value: string) => `url(${value})`
 
-type ApplyStyle = (
-  <P>(css: CSS) => (msa: MSA[]) => (style: string, component: ReactComponent<P>) =>
-  (props: P & ReactProps) => ReturnType<typeof React.createElement>
-)
-
-type CreateComponent = (
-  <P> (css: CSS) => (msa: MSA, component?: ReactComponent<P>) => (props: P & ReactProps) =>
-  ReturnType<typeof React.createElement>
-)
-
-export const createComponent: CreateComponent =
-  css => (msa, component) => ({className: firstClassName = ``, ...props}) => {
+export const createComponent: CreateComponent = css => (msa, component) => {
+  const Component = <T>({className: firstClassName = ``, ...props}, ref: Ref<T>) => {
     const className = `${firstClassName} ${css[msa.className] || ``}`
     const {tagName, properties, variables} = msa
     const finalProps = Object
@@ -43,12 +29,12 @@ export const createComponent: CreateComponent =
         }
         acc[name] = value
         return acc
-      }, {className, style: {}}) as any
-
+      }, {ref, className, style: {}}) as any
     return React.createElement(component || tagName, finalProps)
   }
-
-export const url = (value: string) => `url(${value})`
+  Component.displayName = msa.componentName
+  return React.forwardRef(Component)
+}
 
 export const applyStyle: ApplyStyle = css => msaList => (style, component) => {
   const msa = msaList.find(({className}) => className === style)

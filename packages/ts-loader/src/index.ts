@@ -20,17 +20,6 @@ const nameFile = (path: string): string => {
   return join(dirName, `${baseName}.d.ts`)
 }
 
-const toCamelCase = R.pipe(
-  R.toLower,
-  R.replace(/(^\w|[-_][a-z])/g,
-    R.pipe(
-      R.toUpper,
-      R.replace(`-`, ``),
-      R.replace(`_`, ``),
-    )
-  )
-)
-
 function loader(content: string, sourceMap: string, meta: SharedData) {
   const onComplete = this.async()
   const {propsType, styledPropsType} = R.merge(defOptions, getOptions(this))
@@ -40,11 +29,11 @@ function loader(content: string, sourceMap: string, meta: SharedData) {
     return {
       className,
       componentName,
-      isExtended: tagName && !!(parsedVariables || parsedVariables),
+      isExtended: tagName && (parsedProperties || parsedVariables) && true,
       isStyled: !tagName,
       properties: parsedProperties,
       propsType: propsType(componentName, this.resource),
-      styledPropsType: styledPropsType(componentName || toCamelCase(className)),
+      styledPropsType: styledPropsType(componentName),
       tagName,
       variables: parsedVariables,
     }
