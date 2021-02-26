@@ -113,8 +113,76 @@ Why? Read the answer [here](https://stackoverflow.com/questions/42330075/is-ther
 ```
 
 ```jsx
+import {url} from '@stylin/style'
 const src = `https://picsum.photos/150`
 
-<Avatar url={`url(${src})`}/>
+<Avatar url={url(src)}/>
 ```
 <br/>
+
+### Restyling existing components
+Let's assume we have a button component from 3rd party library, and we like to restyle it and add some extra property.
+<br/>
+
+```jsx
+import {Button} from 'antd'
+import {appleStyle} from './style.scss'
+
+const StyledButton = appleStyle(`sexy-button`, Button)
+
+<StyledButton type='dashed' isVisible>
+  Love me
+</StyledButton>
+```
+
+#### 💅 `style.scss`
+```scss
+/**
+  @SexyButton
+  isVisible: true ? btn-visible : bnt-hidden
+*/
+.sexy-button {
+/*
+  css styles which override or extend Antd Button styles
+*/
+}
+```
+<br/>
+
+As the result, you will get a restyled button with additional `isVisible` property. All original button properties will be reserved.
+<br/>
+
+## ⚠ Important
+Any restyling css class should have comment section: 
+
+```scss
+/**
+*/
+.ok-one {}
+
+/**
+  @AnyName
+*/
+.ok-two {}
+```
+<br/>
+
+### Just `className`
+Any component created with the Stylin library can be restyled again in the same way as mentioned above. Also, a new CSS class can be appended to className property without breaking existing styles.
+<br/>
+
+```jsx
+import css from './style.scss'
+
+
+<StyledButton className={css.special}>
+  Love me
+</StyledButton>
+```
+
+#### 💅 `style.scss`
+```scss
+.special {
+  background-color: pink;
+}
+```

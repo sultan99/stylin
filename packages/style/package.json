@@ -17,13 +17,15 @@
   "scripts": {
     "build": "npm run clean && npm run compile",
     "clean": "rm -rf ./dist",
-    "compile": "tsc",
+    "compile": "tsc -b",
     "lint": "eslint . --ext .tsx,.ts --fix",
     "prepublishOnly": "npm run build",
     "watch": "tsc -w"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
     "core-js": "^3.8.3",

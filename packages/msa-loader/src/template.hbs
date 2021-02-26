@@ -1,0 +1,18 @@
+import {applyStyle as style, createComponent} from '@stylin/style'
+{{#if isStyleLoader}}
+{{content}}
+export const locals = content.locals || {}
+const styleComponent = createComponent(locals)
+{{else}}
+export const locals = {{locals}}
+const styleComponent = createComponent(locals)
+export default locals
+{{/if}}
+
+{{#each msa}}
+{{#if componentName}}
+export const {{componentName}} = styleComponent({{{json this}}})
+{{/if}}
+{{/each}}
+
+export const applyStyle = style(locals)({{json msa}})

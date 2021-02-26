@@ -1,15 +1,22 @@
 import * as R from 'ramda'
+import * as Handlebars from 'handlebars'
 import {MSABase, ParserParams, parseProperty, parseVariable} from './parser'
-import {readFile} from 'fs'
+import {join} from 'path'
+import {readFile, readFileSync} from 'fs'
 
 export interface MSA extends MSABase {
   className: string
-  compName: string
+  componentName: string
   tagName: string
 }
 export interface SharedData {
   msa?: MSA[]
 }
+
+Handlebars.registerHelper(`json`, JSON.stringify)
+
+const template = readFileSync(join(__dirname, `template.hbs`), `utf8`)
+const toDTS = Handlebars.compile(template, {noEscape: true})
 
 const pickRawValues = R.applySpec<ParserParams>({
   defValue: R.nth(1),
@@ -45,60 +52,25 @@ function parseComment(text: string): MSABase {
   return match(reVariable)
 }
 
-function extract(name: string, text: string): string {
-  const re = new RegExp(`@${name}[:\\s]+(\\w+)`)
-  const [, value] = text.match(re) || []
-  return value
-}
-
-const defineComponents = R.compose(
-  R.join(`\n`),
-  R.map(({compName, ...msa}) =>
-    `export const ${compName} = styled(${JSON.stringify(msa)});`
-  ),
+const pickLocals = R.pipe(
+  R.match(/export default (.+);/),
+  R.nth(1)
 )
-
-const parseStyleLoaderContent = (text: string): string => `
-  ${text}
-  const styled = createComponent(content.locals);
-`
-
-function parseMiniCssContent(text: string): string {
-  const [, cssList] = text.match(/export default (.+);/)
-  return `
-    const cssList = ${cssList};
-    const styled = createComponent(cssList);
-    export default cssList;
-  `
-}
-
-const parseContent = R.ifElse(
-  R.includes(`import content`),
-  parseStyleLoaderContent,
-  parseMiniCssContent,
-)
-
-function loader(content: string, sourceMap, meta: SharedData = {}) {
-  meta.msa = this.data.msa
-  this.addDependency(this.resource)
-  const onComplete = this.async()
-  const exports = defineComponents(this.data.msa)
-  const result = `
-    import {createComponent} from "@stylin/style";
-    ${parseContent(content)}
-    ${exports};
-  `
-  onComplete(null, result, sourceMap, meta)
-}
 
 const parseCommentOnly = R.pipe(
-  R.replace(/@\w+[:\s]+(\w+)/g, ``),
+  R.replace(/@.+/g, ``),
   R.when(
     R.includes(`{`),
     R.replace(/\n|\r/g, ` `)
   ),
   parseComment,
 )
+
+function extract(name: string, text: string): string {
+  const re = new RegExp(`@${name}[:\\s]+(.+)[\n|\r]+`)
+  const [, value = ``] = text.match(re) || []
+  return value.trim()
+}
 
 function parseComments(text: string): MSA[] {
   const reComment = /\/\*+((\r|\n|.[^*])+)\*+\/[\n\r]+\.([\w-]+)/gm
@@ -108,13 +80,26 @@ function parseComments(text: string): MSA[] {
     const [, comment, , className] = matches
     const pack = R.append({
       className,
-      compName: extract(`component`, comment),
-      tagName: extract(`tag`, comment) || `div`,
+      componentName: extract(`component`, comment),
+      tagName: extract(`tag`, comment),
       ...parseCommentOnly(comment),
     })
     return pack(match(re))
   }
   return match(reComment)
+}
+
+function loader(content: string, sourceMap, meta: SharedData = {}) {
+  meta.msa = this.data.msa
+  this.addDependency(this.resource)
+  const onComplete = this.async()
+  const dts = toDTS({
+    content,
+    isStyleLoader: content.includes(`import content`),
+    locals: pickLocals(content),
+    msa: meta.msa,
+  })
+  onComplete(null, dts, sourceMap, meta)
 }
 
 export function pitch(skip: any, me: any, sharedData: SharedData) {

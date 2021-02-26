@@ -33,9 +33,10 @@ module.exports = {
 <br/>
 
 ## Options
-You can customize the generated type name. By default, it is equal:
+You can customize the generated type names. By default, they are equal:
 ```js
- propType: (componentName: string) => `${componentName}Props`
+ propsType: (componentName: string) => `${componentName}Props`
+ styledPropsType: (componentName: string) => `Styled${componentName}Props`,
 ```
 <br/>
 

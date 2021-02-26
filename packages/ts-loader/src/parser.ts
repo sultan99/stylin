@@ -44,7 +44,7 @@ const defineVariableType = R.pipe(
   value => isBoolean(value) || isNumber(value) || `string`,
 )
 
-export const typeProperty = R.compose(
+export const parseProperty = R.compose(
   R.when(R.isEmpty, R.always(``)),
   R.join(`\n`),
   R.map(([key, value]: [string, MsaProperty]) =>
@@ -53,7 +53,7 @@ export const typeProperty = R.compose(
   R.toPairs
 )
 
-export const typeVariable = R.compose(
+export const parseVariable = R.compose(
   R.join(`\n`),
   R.map(([key, value]: [string, MsaVariable]) =>
     `${key}${isOptional(value)}: ${defineVariableType(value)}`

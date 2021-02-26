@@ -1,50 +1,62 @@
 import * as R from 'ramda'
+import * as Handlebars from 'handlebars'
 import {SharedData} from '@stylin/msa-loader/index'
 import {dirname, basename, join} from 'path'
 import {getOptions} from 'loader-utils'
-import {typeProperty, typeVariable} from './parser'
-import {writeFile} from 'fs'
+import {parseProperty, parseVariable} from './parser'
+import {readFileSync, writeFile} from 'fs'
+
+const template = readFileSync(join(__dirname, `template.hbs`), `utf8`)
+const toDTS = Handlebars.compile(template, {noEscape: true})
 
 const defOptions = {
-  propType: (name: string) => `${name}Props`
+  propsType: (name: string) => `${name}Props`,
+  styledPropsType: (name: string) => `Styled${name}Props`,
 }
 
-const filename = (path: string): string => {
+const nameFile = (path: string): string => {
   const dirName = dirname(path)
   const baseName = basename(path)
   return join(dirName, `${baseName}.d.ts`)
 }
 
-const createInterface = ({compName, tagName, type, typedProperty, typedVariable}) => `
-  export interface ${type} extends ComponentProps<'${tagName}'> {
-    ${typedProperty}
-    ${typedVariable}
-  }
-  export const ${compName}: FC<${type}>
-`
+const toCamelCase = R.pipe(
+  R.toLower,
+  R.replace(/(^\w|[-_][a-z])/g,
+    R.pipe(
+      R.toUpper,
+      R.replace(`-`, ``),
+      R.replace(`_`, ``),
+    )
+  )
+)
 
 function loader(content: string, sourceMap: string, meta: SharedData) {
   const onComplete = this.async()
-  const {propType} = R.merge(defOptions, getOptions(this))
-  const exports = meta.msa.map(({tagName, compName, properties, variables}) => {
-    const type = propType(compName, this.resource)
-    const typedProperty = typeProperty(properties)
-    const typedVariable = typeVariable(variables)
-    return (typedProperty || typedVariable)
-      ? createInterface({compName, tagName, type, typedProperty, typedVariable})
-      : `export const ${compName}: FC<ComponentProps<'${tagName}'>>`
+  const {propsType, styledPropsType} = R.merge(defOptions, getOptions(this))
+  const exports = meta.msa.map(({componentName, className, properties, tagName, variables}) => {
+    const parsedProperties = parseProperty(properties)
+    const parsedVariables = parseVariable(variables)
+    return {
+      className,
+      componentName,
+      isExtended: tagName && !!(parsedVariables || parsedVariables),
+      isStyled: !tagName,
+      properties: parsedProperties,
+      propsType: propsType(componentName, this.resource),
+      styledPropsType: styledPropsType(componentName || toCamelCase(className)),
+      tagName,
+      variables: parsedVariables,
+    }
   })
-  const result = `
-    import {FC, ComponentProps} from 'react'
-    ${exports.join(`\n`)}`
-    .replace(/^\s+/gm, ``)
-    .replace(/^\w+/gm, group =>
-      [`import`, `export`].includes(group) ? group : `  ${group}`
-    )
+  const isRestyled = exports.some(({isStyled}) => isStyled)
 
-  writeFile(filename(this.resource), result, error => {
-    error && this.emitWarning(error)
-  })
+  writeFile(
+    nameFile(this.resource),
+    toDTS({isRestyled, exports}),
+    error => error && this.emitWarning(error),
+  )
+
   onComplete(null, content, sourceMap, meta)
 }
 

@@ -147,22 +147,13 @@ type: primary | secondary | link
 ```
 
 Sweet! what is next? Read more about:
- - [Shortening and variables](./packages/style/README.md)
+ - [Shortening, variables, restyling](./packages/style/README.md)
  - [TypeScript](./packages/ts-loader/README.md)
 <br/>
 
 ## Development plans
 1) Support forwardRef
-2) Restyling existing components:
-
-```jsx
-import {Button} from 'antd'
-import applyStyle from './styles.scss'
-
-const StyledButton = applyStyle(Button)
-```
-
-3) Support library configurations to handle React-like libraries (preact etc.).
+2) Support library configurations to handle React-like libraries (preact etc.).
 <br/>
 
 ### Glossary
