@@ -18,14 +18,11 @@ Handlebars.registerHelper(`json`, JSON.stringify)
 const template = readFileSync(join(__dirname, `template.hbs`), `utf8`)
 const toDTS = Handlebars.compile(template, {noEscape: true})
 
-const toCamelCase = R.pipe(
-  R.toLower,
-  R.replace(/(^\w|[-_][a-z])/g,
-    R.pipe(
-      R.toUpper,
-      R.replace(`-`, ``),
-      R.replace(`_`, ``),
-    )
+const toCamelCase = R.replace(/(^\w|[-_][a-z])/g,
+  R.pipe(
+    R.toUpper,
+    R.replace(`-`, ``),
+    R.replace(`_`, ``),
   )
 )
 

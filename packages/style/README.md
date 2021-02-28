@@ -10,9 +10,60 @@ npm install --save @stylin/style
 ```
 <br/>
 
-## Shortening
-Here are some tips to make life easier. 
+## Mapping Style Annotations
 
+Don't be scared to learn new stuff, it is deadly simple. Only three things to remember:
+1) @tag: html tag
+2) @component: name of your component
+3) Mapping object:
+
+```
+componentPropertyName {
+  propertyValue: css-class-name
+  anotherPropertyValue: another-css
+}
+```
+
+For example:
+```scss
+/**
+  @tag: button
+  @component: SexyButton
+  type {
+    primary: btn-primary
+    secondary: bnt-secondary
+    link: btn-link
+  }
+*/
+.sexy-button {
+  &.btn-primary { 
+    /* some styles */
+  }
+  &.btn-secondary { 
+    /* some styles */
+  }
+  &.btn-link { 
+    /* some styles 
+  */}
+}
+```
+
+```jsx
+<SexyButton type='primary'>
+  Love me
+</SexyButton>
+
+/* HTML output:
+<button class="sexy-button btn-primary"> //in fact, it will have hashed css class names
+  Love me
+</button>
+*/
+```
+
+<img src="./msa-demo.gif" width="500px"/>
+<br/>
+
+## Shortening
 If your component property values are similar to CSS class names, like in the example below:
 
 ```
@@ -64,7 +115,7 @@ enabled: true
 To map component variables with styles, you should provide the CSS variable and its default value. Webpack loader uses the default value to define the variable type and avoid reassigning it with the same value.
 
 ```
-componentPropertyName: defualt-value --css-variable
+componentPropertyName: default-value --css-variable
 ```
 
 ```scss

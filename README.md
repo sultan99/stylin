@@ -106,7 +106,15 @@ For example:
   }
 */
 .sexy-button {
-  /* css styles */
+  &.btn-primary { 
+    /* some styles */
+  }
+  &.btn-secondary { 
+    /* some styles */
+  }
+  &.btn-link { 
+    /* some styles 
+  */}
 }
 ```
 
@@ -116,11 +124,14 @@ For example:
 </SexyButton>
 
 /* HTML output:
-<button class="a-hashed css-name">
+<button class="sexy-button btn-primary"> //in fact, it will have hashed css class names
   Love me
 </button>
 */
 ```
+
+<img src="./packages/style/msa-demo.gif" width="500px"/>
+<br/>
 
 Done! That is all about to know! 🎉🥳
 
