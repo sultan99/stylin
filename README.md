@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./stylin-slap.png"/>
+  <img src="./be-easy.png" width="300px">
 </div>
 <br/>
 <br/>
@@ -50,7 +50,7 @@ import {Title} from './styles.scss'
 <br/>
 
 #### 🧙‍♂️ `Type auto-generation`
-<img src="./packages/ts-loader/typing-support.gif" width="500px"/>
+<img src="./packages/ts-loader/typing-support.gif"/>
 <br/>
 
 All the magic is behind the style annotations, which you can find in the comment section. It is like JSDoc, but for CSS. However, it is not a CSSDoc. It is more about mapping styles with component properties. 
@@ -130,7 +130,7 @@ For example:
 */
 ```
 
-<img src="./packages/style/msa-demo.gif" width="500px"/>
+<img src="./packages/style/msa-demo.gif"/>
 <br/>
 
 Done! That is all about to know! 🎉🥳
@@ -165,13 +165,3 @@ Sweet! what is next? Read more about:
 ## Development plans
 1) Support library configurations to handle React-like libraries (preact etc.).
 <br/>
-
-### Glossary
-**Stalin**
-/stʌlɪn/ nickname. Joseph Vissarionovich Stalin was a Soviet politician who ruled the Soviet Union from the mid-1920s until his death in 1953.
-
-**Stylin**
-/stɪlɪn/ slang. Meaning looking good or in fashion.
-
-**Stylin**
-/stʌɪlɪn/ noun. Dictator of style. CSS library for styling React components.

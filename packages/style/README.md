@@ -60,7 +60,7 @@ For example:
 */
 ```
 
-<img src="./msa-demo.gif" width="500px"/>
+<img src="./msa-demo.gif"/>
 <br/>
 
 ## Shortening

@@ -2,7 +2,7 @@
 
 Webpack loader for type auto-generation.
 
-<img src="./typing-support.gif" width="500px"/>
+<img src="./typing-support.gif"/>
 <br/>
 
 ## Installation
