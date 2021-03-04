@@ -9,10 +9,10 @@ import {readFileSync, writeFile} from 'fs'
 const template = readFileSync(join(__dirname, `template.hbs`), `utf8`)
 const toDTS = Handlebars.compile(template, {noEscape: true})
 
-const defOptions = {
+const makeOptions = R.merge({
   propsType: (name: string) => `${name}Props`,
   styledPropsType: (name: string) => `Styled${name}Props`,
-}
+})
 
 const nameFile = (path: string): string => {
   const dirName = dirname(path)
@@ -22,7 +22,7 @@ const nameFile = (path: string): string => {
 
 function loader(content: string, sourceMap: string, meta: SharedData) {
   const onComplete = this.async()
-  const {propsType, styledPropsType} = R.merge(defOptions, getOptions(this))
+  const {propsType, styledPropsType} = makeOptions(getOptions(this))
   const exports = meta.msa.map(({componentName, className, properties, tagName, variables}) => {
     const parsedProperties = parseProperty(properties)
     const parsedVariables = parseVariable(variables)

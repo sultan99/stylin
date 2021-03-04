@@ -3,12 +3,12 @@
     "baseUrl": "../",
     "declaration": true,
     "esModuleInterop": true,
-    "module": "ES6",
+    "module": "CommonJS",
     "moduleResolution": "Node",
     "outDir": "./dist",
     "rootDir": "./src",
     "sourceMap": true,
-    "target": "ES6",
+    "target": "ES5",
     "paths": {
       "@stylin/msa-loader/*": [
         "msa-loader/dist/*"
