@@ -1,0 +1,31 @@
+yarn.lock merge=ours
+package-lock.json merge=ours
+
+# source code
+*.htm text eol=lf
+*.html text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.jsx text eol=lf
+*.po text eol=lf
+*.scss text eol=lf
+*.svg text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.txt text eol=lf
+
+# git config
+.gitignore text eol=lf
+.gitconfig text eol=lf
+.gitattributes text eol=lf
+
+# misc config
+.editorconfig text eol=lf
+.eslintrc eol=lf
+.linguirc eol=lf
+.yaml text eol=lf
+
+# Documentation
+*.md text eol=lf
+AUTHORS text
+LICENSE text
