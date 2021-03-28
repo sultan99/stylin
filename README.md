@@ -13,6 +13,7 @@ There is no faster way to create styled & typed React component.
 
 ```jsx
 import {Title} from './styles.scss'
+// crazy part, importing 👆 component from styles
 
 
 <Title color="tomato" size="small">
@@ -163,5 +164,20 @@ Sweet! what is next? Read more about:
 <br/>
 
 ## Development plans
-1) Support library configurations to handle React-like libraries (preact etc.).
+1) Support Next.js.
+2) Support React-like libraries (preact etc.).
 <br/>
+<br/>
+
+## Feedback
+Any questions or suggestions?
+
+You are welcome to discuss it on:
+
+[![Gitter](https://badges.gitter.im/react-on-lambda/community.svg)](https://gitter.im/stylin-js/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](http://twitter.com/share?text=There%20is%20no%20faster%20way%20to%20create%20styled%20and%20typed%20React%20components:%20&url=https://sultan99.github.io/stylin&hashtags=css,react,javascript)
+
+
+
+
+
