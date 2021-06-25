@@ -177,9 +177,9 @@ Let's assume we have a button component from 3rd party library, and we like to r
 
 ```jsx
 import {Button} from 'antd'
-import {appleStyle} from './style.scss'
+import {applyStyle} from './style.scss'
 
-const StyledButton = appleStyle(`sexy-button`, Button)
+const StyledButton = applyStyle(`sexy-button`, Button)
 
 <StyledButton type='dashed' isVisible>
   Love me
