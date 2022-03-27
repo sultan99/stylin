@@ -11,9 +11,6 @@ export interface ParserParams {
   isOptional: boolean
   value: string
 }
-interface IsOptional {
-  '@isOptional': boolean // eslint-disable-line
-}
 interface ParserValue {
   (value: ParserParams): MsaProperty | false
 }
@@ -37,9 +34,13 @@ const isMapped = R.both(
   R.is(String),
   R.includes(`{`),
 )
-const parseMapped = (initValue: IsOptional) => R.pipe(
+
+const parseMapped = (initValue: MsaProperty) => R.pipe(
   R.match(/(?![\s])([\w-]+)[\s:]+([\w-]+)/g),
-  R.map(R.split(`:`)),
+  R.map(value => {
+    const [a, b] = value?.split(`:`)
+    return [a, b] as [string, string]
+  }),
   R.reduce((acc, [property, css]) =>
     R.assoc(property, css.trim(), acc)
   , initValue),
@@ -54,7 +55,7 @@ const isMultiple = R.both(
   R.is(String),
   R.includes(`|`),
 )
-const parseMultiple = (initValue: IsOptional) => R.pipe(
+const parseMultiple = (initValue: MsaProperty) => R.pipe(
   R.split(`|`),
   R.reduce((acc, next) => R.assoc(
     removeSpaces(next),
