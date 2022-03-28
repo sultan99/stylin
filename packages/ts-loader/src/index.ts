@@ -9,7 +9,7 @@ import {readFileSync, writeFile} from 'fs'
 const template = readFileSync(join(__dirname, `template.hbs`), `utf8`)
 const toDTS = Handlebars.compile(template, {noEscape: true})
 
-const makeOptions = R.merge({
+const makeOptions = R.mergeRight({
   propsType: (name: string) => `${name}Props`,
   styledPropsType: (name: string) => `Styled${name}Props`,
 })
