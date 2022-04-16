@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "../",
+    "baseUrl": "./",
     "declaration": true,
     "module": "CommonJS",
     "moduleResolution": "Node",
@@ -10,7 +10,7 @@
     "target": "ES6",
     "paths": {
       "@stylin/msa-loader/*": [
-        "msa-loader/dist/*"
+        "../msa-loader/dist/*"
       ]
     }
   },

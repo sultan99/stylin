@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "../",
+    "baseUrl": "./",
     "declaration": true,
     "esModuleInterop": true,
     "module": "CommonJS",
@@ -11,7 +11,7 @@
     "target": "ES5",
     "paths": {
       "@stylin/msa-loader/*": [
-        "msa-loader/dist/*"
+        "../msa-loader/dist/*"
       ]
     }
   },
