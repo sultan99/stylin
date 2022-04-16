@@ -1,6 +1,6 @@
 {
   "name": "@stylin/ts-loader",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Stylin TypeScript typing loader module for webpack",
   "license": "MIT",
   "repository": {
