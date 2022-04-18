@@ -81,6 +81,11 @@ Then you should add the loader in your webpack configs files:
  - [TypeScript loader (optional)](./packages/ts-loader/README.md)
 <br/>
 
+Check out the 📺[video](https://www.youtube.com/watch?v=XF4vBx-ImzE) for more information on how to install and set up.
+
+[<img src="./install-setup.gif"/>](https://www.youtube.com/watch?v=XF4vBx-ImzE)
+<br/>
+
 ## Diving deeper
 
 Don't be scared to learn new stuff, it is deadly simple. Only three things to remember:
