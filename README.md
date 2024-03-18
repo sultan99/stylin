@@ -168,6 +168,10 @@ Sweet! what is next? Read more about:
  - [TypeScript](./packages/ts-loader/README.md)
 <br/>
 
+## Benchmark
+Explore performance comparison between [Styled Components](https://styled-components.com/) and Stylin libraries [here](https://github.com/sultan99/stylin/tree/main/packages/benchmark). This section provides detailed insights and results from our tests, highlighting the efficiency and speed of both libraries.
+
+
 ## Development plans
 1) Support Next.js.
 2) Support React-like libraries (preact etc.).
