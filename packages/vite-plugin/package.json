@@ -7,7 +7,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/sultan99/stylin",
-    "directory": "packages/vite-loader"
+    "directory": "packages/vite-plugin"
   },
   "author": "Yishai Zehavi",
   "main": "./dist/esm/index.js",

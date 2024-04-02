@@ -45,11 +45,14 @@ export default function stylinLoader(): Plugin {
         const {msa, mapping} = compileCSS({id, code})
         resultCache.set(id, {msa})
 
-        const transformedCode = `import {applyStyle as style, createComponent} from '@stylin/style';
+        const transformedCode = `import {applyStyle as style, createComponent} from '@stylin/style'
 ${code.replace(/(export default [\S\s]*;)/, `
-const styleComponent = createComponent(${stringify(mapping)});
-${msa.map((value) => `export const ${value.componentName} = styleComponent(${stringify(value)})`)}
-export const applyStyle = style(${stringify(mapping)})(${JSON.stringify(msa)});
+const styleComponent = createComponent(${stringify(mapping)})
+${msa
+    .map((value) => `export const ${value.componentName} = styleComponent(${stringify(value)})`)
+    .join(`\n`)
+}
+export const applyStyle = style(${stringify(mapping)})(${JSON.stringify(msa)})
 $1`)}`
 
         return {
