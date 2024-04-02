@@ -1,0 +1,39 @@
+import {FC, ComponentProps} from 'react'
+
+{{#each exports}}
+{{#with this}}
+{{#if isStyled}}
+interface {{styledPropsType}} {
+  {{properties}}
+  {{variables}}
+}
+{{else}}
+
+{{#if isExtended}}
+export interface {{propsType}} extends ComponentProps<'{{tagName}}'> {
+  {{properties}}
+  {{variables}}
+}
+export declare const {{componentName}}: FC<{{propsType}}>
+{{else}}
+export declare const {{componentName}}: FC<ComponentProps<'{{tagName}}'>>
+{{/if}}
+{{/if}}
+{{/with}}
+{{/each}}
+
+{{#if isRestyled}}
+interface ClassName {
+{{#each exports}}
+{{#with this}}
+{{#if isStyled}}
+  '{{className}}' : {{styledPropsType}}
+{{/if}}
+{{/with}}
+{{/each}}
+}
+
+type ApplyStyle = <C extends keyof ClassName, P>(className: C, Component: FC<P>) => FC<P & ClassName[C]>
+
+export declare const applyStyle: ApplyStyle
+{{/if}}

@@ -1,0 +1,58 @@
+{
+  "name": "vite-plugin-stylin",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Stylin plugin for Vite",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sultan99/stylin",
+    "directory": "packages/vite-loader"
+  },
+  "author": "Yishai Zehavi",
+  "main": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./ts": {
+      "import": "./dist/esm/ts.js",
+      "require": "./dist/cjs/ts.js",
+      "types": "./dist/types/ts.d.ts"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run clean && npm run compile && node ./scripts/prepare-cjs.mjs",
+    "clean": "rm -rf ./dist && npm run copy-files",
+    "compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+    "copy-files": "mkdir -p dist/{esm,cjs} && cp ./src/*.hbs ./dist/esm/ && cp ./src/*.hbs ./dist/cjs/",
+    "lint": "eslint . --ext .tsx,.ts --fix",
+    "prepublishOnly": "npm run build",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "@rollup/pluginutils": "^5.1.0",
+    "@types/handlebars": "^4.1.0",
+    "@types/node": "^20.12.2",
+    "@types/ramda": "^0.28.11",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "eslint": "^8.13.0",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.7"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8",
+    "ramda": "^0.28.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
