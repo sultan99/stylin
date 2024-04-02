@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    // "declaration": true,
+    "esModuleInterop": true,
+    // "module": "Node16",
+    "moduleResolution": "Node",
+    // "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "target": "ESNext",
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
