@@ -30,8 +30,9 @@
   ],
   "scripts": {
     "build": "npm run clean && npm run compile && node ./scripts/prepare-cjs.mjs",
-    "clean": "rm -rf ./dist",
+    "clean": "rm -rf ./dist && npm run copy-files",
     "compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+    "copy-files": "node ./scripts/copy-files.mjs",
     "lint": "eslint . --ext .tsx,.ts --fix",
     "prepublishOnly": "npm run build",
     "watch": "tsc -w"
@@ -48,6 +49,7 @@
     "vite": "^5.2.7"
   },
   "dependencies": {
+    "handlebars": "^4.7.8",
     "ramda": "^0.28.0"
   },
   "publishConfig": {
