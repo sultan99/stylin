@@ -30,9 +30,8 @@
   ],
   "scripts": {
     "build": "npm run clean && npm run compile && node ./scripts/prepare-cjs.mjs",
-    "clean": "rm -rf ./dist && npm run copy-files",
+    "clean": "rm -rf ./dist",
     "compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
-    "copy-files": "mkdir -p dist/{esm,cjs} && cp ./src/*.hbs ./dist/esm/ && cp ./src/*.hbs ./dist/cjs/",
     "lint": "eslint . --ext .tsx,.ts --fix",
     "prepublishOnly": "npm run build",
     "watch": "tsc -w"

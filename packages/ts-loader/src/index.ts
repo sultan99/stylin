@@ -2,7 +2,6 @@ import * as R from 'ramda'
 import * as Handlebars from 'handlebars'
 import {SharedData} from '@stylin/msa-loader/index'
 import {dirname, basename, join} from 'path'
-import {getOptions} from 'loader-utils'
 import {parseProperty, parseVariable} from './parser'
 import {readFileSync, writeFile} from 'fs'
 
@@ -22,7 +21,7 @@ const nameFile = (path: string): string => {
 
 function loader(content: string, sourceMap: string, meta: SharedData) {
   const onComplete = this.async()
-  const {propsType, styledPropsType} = makeOptions(getOptions(this))
+  const {propsType, styledPropsType} = makeOptions(this.getOptions())
   const exports = meta.msa.map(({componentName, className, properties, tagName, variables}) => {
     const parsedProperties = parseProperty(properties)
     const parsedVariables = parseVariable(variables)

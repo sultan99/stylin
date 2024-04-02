@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-    // "declaration": true,
+    "declaration": true,
     "esModuleInterop": true,
-    // "module": "Node16",
     "moduleResolution": "Node",
-    // "outDir": "./dist",
+    "outDir": "./dist",
     "rootDir": "./src",
     "sourceMap": true,
     "target": "ESNext",

@@ -17,14 +17,14 @@ const isNumber = R.ifElse(
   R.F
 )
 
-const toLiteral = R.pipe(
+const toLiteral = R.pipe<MsaProperty[], string[], string[], string[], string>(
   R.keys,
   R.reject(R.equals(`@isOptional`)),
   R.map((value: string) => `'${value}'`),
   R.join(` | `),
 )
 
-const extractName = R.pipe(
+const extractName = R.pipe<MsaProperty[], string[], string[], string>(
   R.keys,
   R.reject(R.equals(`@isOptional`)),
   R.head,
