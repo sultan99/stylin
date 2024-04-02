@@ -17,7 +17,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build --parallel --stream",
+    "build": "lerna run build",
     "clean": "lerna run clean",
     "publish": "lerna publish",
     "test": "lerna run test"

@@ -22,6 +22,9 @@
     "prepublishOnly": "npm run build",
     "watch": "tsc -w"
   },
+  "dependencies": {
+    "@stylin/msa-loader": "file:../msa-loader"
+  },
   "devDependencies": {
     "@babel/core": "^7.24.3",
     "@types/react": "^18.2.67",

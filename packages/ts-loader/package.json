@@ -35,6 +35,7 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
+    "@stylin/msa-loader": "file:../msa-loader",
     "handlebars": "^4.7.8",
     "ramda": "^0.29.1"
   },

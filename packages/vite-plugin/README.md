@@ -1,15 +1,15 @@
-# vite-plugin-stylin
+# @stylin/vite-plugin
 This is the official Vite plugin for `@stylin/style` package. It supports import from both CSS and SCSS files.
 
 ## Installation
 ```sh
-npm install --save-dev vite-plugin-stylin
+npm install --save-dev @stylin/vite-plugin
 ```
 
 Register your plugin in `vite.config.ts`:
 
 ```ts
-import stylin from 'vite-plugin-stylin';
+import stylin from '@stylin/vite-plugin';
 
 export default defineConfig({
   plugins: [stylin(), otherPlugin()]
@@ -35,11 +35,11 @@ This plugin only supports importing from **CSS modules.** So make sure your file
 This plugin comes with support for Typescript built-in! Modify your `vite.config.ts` as follows:
 
 ```ts
-import stylin from 'vite-plugin-stylin';
-import tsStylin from 'vite-plugin-stylin/ts'; // <-- New!
+import stylin from '@stylin/vite-plugin';
+import stylinTS from '@stylin/vite-plugin/ts'; // <-- New!
 
 export default defineConfig({
-  plugins: [stylin(), tsStylin(), otherPlugin()]
+  plugins: [stylin(), stylinTS(), otherPlugin()]
 });
 ```
 
