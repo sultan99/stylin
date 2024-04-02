@@ -1,6 +1,6 @@
 {
   "name": "@stylin/msa-loader",
-  "version": "0.4.3",
+  "version": "0.5.0-alpha.0",
   "description": "Stylin loader module for webpack",
   "license": "MIT",
   "repository": {
