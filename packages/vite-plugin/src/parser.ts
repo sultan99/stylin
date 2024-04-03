@@ -180,7 +180,7 @@ function parseComments(text: string): MSA[] {
 
 function extractClassNames(code: string): Record<string, string> {
   const reDefaultExportClassNames = /['"]([\w-]+)['"]:\s+['"]([\w-]+)['"]/gs
-  const reNamedExportsClassNames = /export const (\w*) = ['"]([\w-]*)['"];/g
+  const reNamedExportsClassNames = /export const (\w+) = ['"]([\w-]+)['"];/g
 
   const match: (re: RegExp) => Record<string, string> = (re: RegExp) => {
     const matches = re.exec(code)

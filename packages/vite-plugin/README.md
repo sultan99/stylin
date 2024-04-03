@@ -29,7 +29,7 @@ export default function MyCustomButton() {
 ```
 
 **Important note**  
-This plugin only supports importing from **CSS modules.** So make sure your files ends with `.module.css` or `.module.scss`.
+This plugin only supports importing from **CSS modules.** So make sure your files end with `.module.css` or `.module.scss`.
 
 ## Typescript Support
 This plugin comes with support for Typescript built-in! Modify your `vite.config.ts` as follows:
@@ -43,7 +43,7 @@ export default defineConfig({
 });
 ```
 
-This plugin detects files that ends with `.module.css` or `.module.scss` in your project and creates matching `.d.ts` files alongside them. For example, if your source code directory has this structure:
+This plugin detects files that end with `.module.css` or `.module.scss` in your project and creates matching `.d.ts` files alongside them. For example, if your source code directory has this structure:
 ```
 |-- src
   |-- components
