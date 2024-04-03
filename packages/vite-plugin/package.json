@@ -11,7 +11,14 @@
   },
   "author": "Yishai Zehavi",
   "main": "./dist/esm/index.js",
+  "files": ["dist"],
   "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "index": ["./dist/types/index.d.ts"],
+      "ts": ["./dist/types/ts.d.ts"]
+    }
+  },
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
@@ -25,9 +32,6 @@
     }
   },
   "sideEffects": false,
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "npm run clean && npm run compile && node ./scripts/prepare-cjs.mjs",
     "clean": "rm -rf ./dist && npm run copy-files",

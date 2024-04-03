@@ -1,5 +1,5 @@
-import * as R from 'ramda'
 import type {MsaProperty, MsaVariable} from './types'
+import * as R from 'ramda'
 
 const isOptional = (value: MsaProperty | MsaVariable) => (
   (Array.isArray(value) && value[2]) || (!Array.isArray(value) && value[`@isOptional`]) ? `?` : ``

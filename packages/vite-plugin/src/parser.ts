@@ -1,5 +1,5 @@
-import * as R from 'ramda'
 import type {MSA, MSABase, MsaProperty, MsaVariable, ParserParams} from './types'
+import * as R from 'ramda'
 
 interface ParserValue {
   (value: ParserParams): MsaProperty | false

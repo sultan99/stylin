@@ -1,11 +1,11 @@
-import type {ResultCacheValue} from "./types"
-import {resultCache} from "./index.js"
 import type {Plugin} from "vite"
-import {parseProperty, parseVariable} from "./ts-parser.js"
-import {writeFile, readFileSync} from 'node:fs'
-import {dirname, basename, join} from 'node:path'
+import type {ResultCacheValue} from "./types"
 import Handlebars from "handlebars"
 import {createFilter} from '@rollup/pluginutils'
+import {dirname, basename, join} from 'node:path'
+import {parseProperty, parseVariable} from "./ts-parser.js"
+import {resultCache} from "./index.js"
+import {writeFile, readFileSync} from 'node:fs'
 
 /** @ts-ignore support both CommonJS and ESM */
 const currentDirname = typeof __dirname !== `undefined` ? __dirname : import.meta.dirname

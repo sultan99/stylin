@@ -1,8 +1,8 @@
-import {type Plugin} from 'vite'
-import {readFileSync} from 'node:fs'
-import {extractClassNames, parseComments} from './parser.js'
-import {createFilter} from '@rollup/pluginutils'
 import type {MSA} from './types'
+import type {Plugin} from 'vite'
+import {createFilter} from '@rollup/pluginutils'
+import {extractClassNames, parseComments} from './parser.js'
+import {readFileSync} from 'node:fs'
 
 function stringify(o: Object) {
   return JSON.stringify(o)
