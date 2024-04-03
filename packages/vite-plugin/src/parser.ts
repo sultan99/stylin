@@ -178,4 +178,24 @@ function parseComments(text: string): MSA[] {
   return match(reComment)
 }
 
-export {parseComments}
+function extractClassNames(code: string): Record<string, string> {
+  const reDefaultExportClassNames = /['"]([\w-]+)['"]:\s+['"]([\w-]+)['"]/gs
+  const reNamedExportsClassNames = /export const (\w*) = ['"]([\w-]*)['"];/g
+
+  const match: (re: RegExp) => Record<string, string> = (re: RegExp) => {
+    const matches = re.exec(code)
+    if (!matches) return {}
+    const [, key, value] = matches
+    return R.assoc(
+      key,
+      value,
+      match(re)
+    )
+  }
+  return R.mergeDeepRight(
+    match(reDefaultExportClassNames),
+    match(reNamedExportsClassNames)
+  )
+}
+
+export {parseComments, extractClassNames}

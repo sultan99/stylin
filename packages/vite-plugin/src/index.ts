@@ -1,6 +1,6 @@
 import {type Plugin} from 'vite'
 import {readFileSync} from 'node:fs'
-import {parseComments} from './parser.js'
+import {extractClassNames, parseComments} from './parser.js'
 import {createFilter} from '@rollup/pluginutils'
 import type {MSA} from './types'
 
@@ -18,16 +18,7 @@ function compileCSS(options: { id: string; code: string }) {
   const rawCSS = readFileSync(id, `utf-8`)
   const msa = parseComments(rawCSS)
 
-  const exportReg = /export const (.*);/g
-  let result: RegExpExecArray | null
-  const mapping = {} as Record<string, string>
-  while ((result = exportReg.exec(code)) !== null) {
-    const parse = /(.*) = \"(.*)\"/.exec(result[1])
-    if (parse) {
-      const [, key, value] = parse
-      mapping[key] = value
-    }
-  }
+  const mapping = extractClassNames(code)
 
   return {
     mapping,
