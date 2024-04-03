@@ -65,18 +65,22 @@ For all these, you will need a specific package, plugin, or webpack loader.
 <br/>
 
 ## Demo
-✨ [Online demo](https://codesandbox.io/s/github/sultan99/cards/tree/main)<br/>
+✨ [Online demo (webpack)](https://codesandbox.io/s/github/sultan99/cards/tree/main)<br/>
+✨ [Online demo (vite)](https://codesandbox.io/p/github/sultan99/cards/vite)<br/>
 ✨ [Github repo](https://github.com/sultan99/cards)
 <br/>
 
 ## Get started
-The core library:
+This library can be used with either webpack or vite.
+
+### 📦 Webpack
+The TypeScript loader `@stylin/ts-loader` is optional.
+
 ```sh
-npm install @stylin/style
-npm install --save-dev @stylin/msa-loader
+npm install --save-dev @stylin/msa-loader @stylin/ts-loader
 ```
 
-Then you should add the loader in your webpack configs files:
+Then you should add the loader(s) in your webpack configs files:
  - [MSA loader](./packages/msa-loader/README.md)
  - [TypeScript loader (optional)](./packages/ts-loader/README.md)
 <br/>
@@ -85,6 +89,26 @@ Check out the 📺[video](https://www.youtube.com/watch?v=XF4vBx-ImzE) for more 
 
 [<img src="./install-setup.gif"/>](https://www.youtube.com/watch?v=XF4vBx-ImzE)
 <br/>
+
+
+### ⚡ Vite
+```sh
+npm install @stylin/style
+npm install --save-dev @stylin/vite-plugin
+```
+
+Register your plugin in `vite.config.ts`:
+
+```ts
+import stylin from '@stylin/vite-plugin'
+
+export default defineConfig({
+  plugins: [stylin(), otherPlugin()]
+})
+```
+
+For more details, please refer to the [installation guide](./packages/vite-plugin/README.md).
+
 
 ## Diving deeper
 
