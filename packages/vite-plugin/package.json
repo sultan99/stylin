@@ -1,7 +1,7 @@
 {
   "name": "@stylin/vite-plugin",
   "type": "module",
-  "version": "0.5.3-alpha.0",
+  "version": "0.5.4-alpha.0",
   "description": "Stylin plugin for Vite",
   "license": "MIT",
   "repository": {
@@ -11,12 +11,18 @@
   },
   "author": "Yishai Zehavi",
   "main": "./dist/esm/index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "types": "./dist/types/index.d.ts",
   "typesVersions": {
     "*": {
-      "index": ["./dist/types/index.d.ts"],
-      "ts": ["./dist/types/ts.d.ts"]
+      "index": [
+        "./dist/types/index.d.ts"
+      ],
+      "ts": [
+        "./dist/types/ts.d.ts"
+      ]
     }
   },
   "exports": {
