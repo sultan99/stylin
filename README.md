@@ -77,6 +77,7 @@ This library can be used with either webpack or vite.
 The TypeScript loader `@stylin/ts-loader` is optional.
 
 ```sh
+npm install @stylin/style
 npm install --save-dev @stylin/msa-loader @stylin/ts-loader
 ```
 
