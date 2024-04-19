@@ -8,7 +8,7 @@ function stringify(o: Object) {
   return JSON.stringify(o)
 }
 
-type ResultCacheValue = { msa: MSA[] };
+type ResultCacheValue = { msa: MSA[] }
 export const resultCache = new Map<string, ResultCacheValue>()
 
 const filter = createFilter(/\.module\.s?css$/)
@@ -51,6 +51,15 @@ $1`)}`
           map: {mappings: ``}
         }
       }
-    }
+    },
+
+    async handleHotUpdate(ctx) {
+      const id = ctx.file
+      const code = await ctx.read()
+      if (filter(id)) {
+        const {msa} = compileCSS({id, code})
+        resultCache.set(id, {msa})
+      }
+    },
   }
 }
