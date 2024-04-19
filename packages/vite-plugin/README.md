@@ -42,6 +42,7 @@ export default defineConfig({
   plugins: [stylin(), stylinTS(), otherPlugin()]
 })
 ```
+> **Make sure to put the Typescript plugin *after* the base plugin.**
 
 This plugin detects files that end with `.module.css` or `.module.scss` in your project and creates matching `.d.ts` files alongside them. For example, if your source code directory has this structure:
 ```
