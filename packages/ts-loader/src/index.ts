@@ -29,7 +29,6 @@ function loader(content: string, sourceMap: string, meta: SharedData) {
       className,
       componentName,
       isExtended: tagName && (parsedProperties || parsedVariables) && true,
-      isStyled: !tagName,
       properties: parsedProperties,
       propsType: propsType(componentName, this.resource),
       styledPropsType: styledPropsType(componentName),
@@ -37,11 +36,10 @@ function loader(content: string, sourceMap: string, meta: SharedData) {
       variables: parsedVariables,
     }
   })
-  const isRestyled = exports.some(({isStyled}) => isStyled)
 
   writeFile(
     nameFile(this.resource),
-    toDTS({isRestyled, exports}),
+    toDTS({exports}),
     error => error && this.emitWarning(error),
   )
 
