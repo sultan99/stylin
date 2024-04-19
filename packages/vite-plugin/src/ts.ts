@@ -1,5 +1,4 @@
 import type {Plugin} from "vite"
-import type {ResultCacheValue} from "./types"
 import Handlebars from "handlebars"
 import {createFilter} from '@rollup/pluginutils'
 import {dirname, basename, join} from 'node:path'
@@ -24,7 +23,7 @@ const nameFile = (path: string): string => {
 
 function generateDeclarationFile(options: { id: string; onError?: (error: Error) => void }) {
   const {id, onError} = options
-  const {msa} = resultCache.get(id) as ResultCacheValue
+  const {msa} = resultCache.get(id)
   const exports = msa.map(({componentName, className, properties, tagName, variables}) => {
     const parsedProperties = parseProperty(properties)
     const parsedVariables = parseVariable(variables)
@@ -32,7 +31,6 @@ function generateDeclarationFile(options: { id: string; onError?: (error: Error)
       className,
       componentName,
       isExtended: tagName && (parsedProperties || parsedVariables) && true,
-      isStyled: !tagName,
       properties: parsedProperties,
       propsType: `${componentName}Props`,
       styledPropsType: `Styled${componentName}Props`,
@@ -40,11 +38,10 @@ function generateDeclarationFile(options: { id: string; onError?: (error: Error)
       variables: parsedVariables,
     }
   })
-  const isRestyled = exports.some(({isStyled}) => isStyled)
 
   writeFile(
     nameFile(id),
-    toDTS({isRestyled, exports}),
+    toDTS({exports}),
     error => error && onError && onError(error)
   )
 }
@@ -52,6 +49,7 @@ function generateDeclarationFile(options: { id: string; onError?: (error: Error)
 export default function tsLoader(): Plugin {
   return {
     name: `vite-ts-stylin`,
+    enforce: 'post',
 
     transform(code, id) {
       if (shouldTransform(id)) {
@@ -61,7 +59,6 @@ export default function tsLoader(): Plugin {
 
     handleHotUpdate(ctx) {
       const id = ctx.file
-
       if (shouldTransform(id)) {
         generateDeclarationFile({id, onError: console.error})
       }
