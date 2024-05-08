@@ -7,6 +7,10 @@
 <br/>
 
 # Stylin
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40stylin%2Fstyle?label=gzip%20size&color=green)
+![NPM Downloads](https://img.shields.io/npm/d18m/%40stylin%2Fstyle)
+![GitHub License](https://img.shields.io/github/license/sultan99/stylin)
+
 Stylin is a build-time CSS library that offers an elegant way to style React components. It extends CSS Modules and adds some missing features like dynamic variables or auto-typing.
 
 There is no faster way to create styled & typed React component.
