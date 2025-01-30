@@ -1,6 +1,6 @@
 {
   "name": "@stylin/style",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Build-time CSS library for styling React components",
   "license": "MIT",
   "repository": {
